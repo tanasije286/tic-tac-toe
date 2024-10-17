@@ -1,9 +1,18 @@
 import './App.css';
 
 function Square({ value }) {
+    function handleClick(){
+        console.log('Clicked!');
+    }
 
     return (
-        <button className="square">{value}</button>);
+        <button
+            className="square"
+            onClick={handleClick}
+        >
+            {value}
+        </button>
+    );
 }
 
 function Board() {
