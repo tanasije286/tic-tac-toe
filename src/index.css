@@ -29,3 +29,7 @@ body {
   display: table;
 }
 
+.status {
+  margin-bottom: 10px;
+}
+
