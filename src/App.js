@@ -1,7 +1,9 @@
 import './App.css';
 
 function Square({ value }) {
-    return <button className="square">{value}</button>;
+
+    return (
+        <button className="square">{value}</button>);
 }
 
 function Board() {
