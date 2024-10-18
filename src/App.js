@@ -35,9 +35,12 @@ function Board({ xIsNext, squares, onPlay }) {
             <div className="status">{status}</div>
             {listBoardRow.map(row => (
                 <div className="board-row">
-                    {listBoardCol.map(col =>(
-                        <Square value={squares[row*3+col]} onSquareClick={() => handleClick(row*3+col)}/>
-                    ))}
+                    {listBoardCol.map(col => {
+                        const index = row * 3 + col;
+                        return(
+                            <Square value={squares[index]} onSquareClick={() => handleClick(index)}/>
+                        );
+                    })}
                 </div>
             ))}
         </>
