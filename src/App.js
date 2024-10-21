@@ -70,23 +70,24 @@ function Game() {
 
 
 
-    const moves = history.map((squares, move) => {
+    const moves = (ascendingHistoryOrder ? history : [...history].reverse()).map((squares, move) => {
         let description;
-        if(move === currentMove) {
+        const actualMove = ascendingHistoryOrder ? move : history.length - 1 - move;
+        if(actualMove === currentMove) {
             description = 'You are at move #' + currentMove;
         }
-        else if (move > 0) {
-            description = 'Go to move #' + move;
+        else if (actualMove > 0) {
+            description = 'Go to move #' + actualMove;
         }
         else {
             description = 'Go to game start';
         }
         return (
-            <li key={move}>
-                {move ===  currentMove ? (
+            <li key={actualMove}>
+                {actualMove ===  currentMove ? (
                     <span>{description}</span>
                 ) : (
-                    <button onClick={() => jumpTo(move)}>{description}</button>
+                    <button onClick={() => jumpTo(actualMove)}>{description}</button>
                 )}
             </li>
         );
