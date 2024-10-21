@@ -52,6 +52,7 @@ function Game() {
     const [currentMove, setCurrentMove] = useState(0);
     const xIsNext = currentMove % 2 === 0;
     const currentSquares = history[currentMove];
+    const [ascendingHistoryOrder, setAscendingHistoryOrder] = useState(true);
 
     function handlePlay(nextSquares) {
         const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
@@ -62,6 +63,12 @@ function Game() {
     function jumpTo(nextMove) {
         setCurrentMove(nextMove);
     }
+
+    function onHistoryOrder(){
+        setAscendingHistoryOrder(!ascendingHistoryOrder);
+    }
+
+
 
     const moves = history.map((squares, move) => {
         let description;
@@ -85,15 +92,23 @@ function Game() {
         );
     });
 
+    const historyOrderDescription = (ascendingHistoryOrder ?
+        "Switch to Descending Order" : "Switch to Ascending Order");
+
     return (
-        <div className="game">
-            <div className="game-board">
-                <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <>
+            <div className="game">
+                <div className="game-board">
+                    <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
+                </div>
+                <div className="game-info">
+                    <ol>{moves}</ol>
+                </div>
             </div>
-            <div className="game-info">
-                <ol>{moves}</ol>
+            <div className="game-history-order">
+                <button onClick={onHistoryOrder}>{historyOrderDescription}</button>
             </div>
-        </div>
+        </>
     );
 }
 
