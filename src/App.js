@@ -1,9 +1,9 @@
 import './App.css';
 import {useState} from "react";
 
-function Square({ value , onSquareClick}) {
+function Square({ value , onSquareClick, highlighted = false}) {
     return (
-        <button className="square" onClick={onSquareClick}>
+        <button className={`square ${highlighted ? "highlighted" : ""}`}  onClick={onSquareClick}>
             {value}
         </button>
     );
@@ -11,7 +11,7 @@ function Square({ value , onSquareClick}) {
 
 function Board({ xIsNext, squares, onPlay }) {
     function handleClick(i){
-        if (squares[i] || calculateWinner(squares)) {
+        if (squares[i] || calculateWinningSquares(squares)) {
             return;
         }
         const nextSquares = squares.slice();
@@ -19,16 +19,17 @@ function Board({ xIsNext, squares, onPlay }) {
         onPlay(nextSquares);
     }
 
-    const winner = calculateWinner(squares);
+    const winningSquares = calculateWinningSquares(squares);
     let status;
-    if (winner) {
-        status = "Winner: " + winner;
+    if (winningSquares) {
+        status = "Winner: " + (xIsNext ? "O" : "X");
     } else {
         status = "Next player: " + (xIsNext ? "X" : "O");
     }
 
     const listBoardRow = [0,1,2]
     const listBoardCol = [0,1,2]
+    const winSquares = (winningSquares? winningSquares:[-1,-1,-1])
 
     return (
         <>
@@ -38,7 +39,7 @@ function Board({ xIsNext, squares, onPlay }) {
                     {listBoardCol.map(col => {
                         const index = row * 3 + col;
                         return(
-                            <Square value={squares[index]} onSquareClick={() => handleClick(index)}/>
+                            <Square value={squares[index]} onSquareClick={() => handleClick(index)} highlighted={(winSquares.includes(index))}/>
                         );
                     })}
                 </div>
@@ -95,6 +96,7 @@ function Game() {
 
     const historyOrderDescription = (ascendingHistoryOrder ?
         "Switch to Descending Order" : "Switch to Ascending Order");
+    const tieMessage = (currentMove >= 9 ? "It's a tie!" : "")
 
     return (
         <>
@@ -109,11 +111,12 @@ function Game() {
             <div className="game-history-order">
                 <button onClick={onHistoryOrder}>{historyOrderDescription}</button>
             </div>
+            <div className="status">{tieMessage}</div>
         </>
     );
 }
 
-function calculateWinner(squares) {
+function calculateWinningSquares(squares) {
     const lines = [
         [0, 1, 2],
         [3, 4, 5],
@@ -127,7 +130,7 @@ function calculateWinner(squares) {
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a];
+            return [a,b,c];
         }
     }
     return null;
