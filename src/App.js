@@ -10,13 +10,14 @@ function Square({ value , onSquareClick, highlighted = false}) {
 }
 
 function Board({ xIsNext, squares, onPlay }) {
-    function handleClick(i){
+    function handleClick(row,col){
+        const i = row * 3 + col;
         if (squares[i] || calculateWinningSquares(squares)) {
             return;
         }
         const nextSquares = squares.slice();
         (xIsNext ? nextSquares[i] = 'X' : nextSquares[i] = 'O');
-        onPlay(nextSquares);
+        onPlay(nextSquares, row, col);
     }
 
     const winningSquares = calculateWinningSquares(squares);
@@ -39,7 +40,7 @@ function Board({ xIsNext, squares, onPlay }) {
                     {listBoardCol.map(col => {
                         const index = row * 3 + col;
                         return(
-                            <Square value={squares[index]} onSquareClick={() => handleClick(index)} highlighted={(winSquares.includes(index))}/>
+                            <Square value={squares[index]} onSquareClick={() => handleClick(row,col)} highlighted={(winSquares.includes(index))}/>
                         );
                     })}
                 </div>
@@ -50,13 +51,16 @@ function Board({ xIsNext, squares, onPlay }) {
 
 function Game() {
     const [history, setHistory] = useState([Array(9).fill(null)]);
+    const [rowColHistory, setRowColHistory] = useState([Array(2).fill(null)]);
     const [currentMove, setCurrentMove] = useState(0);
     const xIsNext = currentMove % 2 === 0;
     const currentSquares = history[currentMove];
     const [ascendingHistoryOrder, setAscendingHistoryOrder] = useState(true);
 
-    function handlePlay(nextSquares) {
+    function handlePlay(nextSquares, row, col) {
         const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+        const nextRowColHistory = [...rowColHistory.slice(0, currentMove + 1), [row,col]];
+        setRowColHistory(nextRowColHistory);
         setHistory(nextHistory);
         setCurrentMove(nextHistory.length - 1);
     }
@@ -75,10 +79,15 @@ function Game() {
         let description;
         const actualMove = ascendingHistoryOrder ? move : history.length - 1 - move;
         if(actualMove === currentMove) {
-            description = 'You are at move #' + currentMove;
+            if (rowColHistory[actualMove][0]) {
+                description = 'You are at move #' + currentMove + " at (" + rowColHistory[actualMove][0] + ", " + rowColHistory[actualMove][1] + ")";
+            }
+            else {
+                description = 'You are at move #' + currentMove;
+            }
         }
         else if (actualMove > 0) {
-            description = 'Go to move #' + actualMove;
+            description = 'Go to move #' + actualMove + " at (" + rowColHistory[actualMove][0] + ", " + rowColHistory[actualMove][1] + ")";
         }
         else {
             description = 'Go to game start';
