@@ -1,51 +1,121 @@
+/* Global styles */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: sans-serif;
-  margin: 20px;
-  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5; /* Light gray background for a modern look */
+  color: #333; /* Darker text for readability */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
 }
 
+/* Square styles */
 .square {
   background: #fff;
-  border: 1px solid #999;
-  float: left;
+  border: 2px solid #007bff; /* Subtle blue border */
+  border-radius: 5px; /* Rounded corners */
   font-size: 24px;
   font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  line-height: 50px; /* Make square larger */
+  height: 50px; /* Increased size for better visibility */
+  width: 50px;
+  margin: 2px; /* Add spacing between squares */
   padding: 0;
   text-align: center;
-  width: 34px;
+  cursor: pointer; /* Change cursor to pointer to indicate clickability */
+  transition: background 0.3s ease, border-color 0.3s ease; /* Smooth hover effect */
 }
 
+/* Highlight winning squares */
 .square.highlighted {
-  background: yellow;
+  background: #ffeb3b; /* Bright yellow for highlight */
+  border-color: #fbc02d; /* Slightly darker border to enhance the highlight effect */
 }
 
+/* Hover effect for squares */
+.square:hover {
+  background: #e0f7fa; /* Light blue hover effect */
+}
+
+/* Board row styles */
+.board-row {
+  display: flex; /* Use flexbox for consistent layout */
+}
+
+/* Board row styles */
 .board-row:after {
   clear: both;
   content: '';
   display: table;
 }
 
+/* Status text styles */
 .status {
-  margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #007bff; /* Blue text to match the board border */
+  font-weight: bold;
 }
 
+/* Game layout styles */
 .game {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
+/* Styles for game info section */
 .game-info {
-  margin-left: 20px;
+  margin-left: 30px; /* Increase space between board and game info */
 }
 
-.game-history-order{
+/* History order button styling */
+.game-history-order {
+  margin-top: 10px;
+  text-align: center;
+}
 
+.game-history-order button {
+  padding: 8px 15px;
+  background-color: #007bff; /* Blue background for buttons */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Hover effect for history order button */
+.game-history-order button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Tie message styling */
+.status.tie {
+  color: #e53935; /* Red color for tie message */
+  font-size: 18px;
+  font-weight: bold; /* Make text bold */
+  border: 2px solid #ff0000; /* Red outline */
+  padding: 5px 5px; /* Add some padding for spacing */
+  border-radius: 5px; /* Optional: rounded corners for better aesthetics */
+  margin-top: 10px;
+  text-align: center;
+  background-color: #d3d3d3; /* Light gray background */
+  display: inline-block;
+}
+
+.status-container {
+  text-align: center; /* Center-aligns inline-block elements */
 }

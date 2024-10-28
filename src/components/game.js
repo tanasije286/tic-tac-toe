@@ -94,7 +94,8 @@ function Game() {
         "Switch to Descending Order" : "Switch to Ascending Order");
 
     // Display a tie message if all 9 moves have been played
-    const tieMessage = (currentMove >= 9 ? "It's a tie!" : "")
+    const tieMessage = (currentMove >= 9 ? "It's a tie!": "");
+
 
     return (
         <>
@@ -109,7 +110,9 @@ function Game() {
             <div className="game-history-order">
                 <button onClick={onHistoryOrder}>{historyOrderDescription}</button>
             </div>
-            <div className="status">{tieMessage}</div>
+            <div className="status-container">
+                {tieMessage && <div className="status tie">{tieMessage}</div>}
+            </div>
         </>
     );
 }
