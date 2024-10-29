@@ -1,6 +1,6 @@
 import {useState} from "react";
 import Board from "./board";
-import {Box, Button, Grid2, Typography} from "@mui/material";
+import {Box, Button, Grid2, List, ListItem, Typography} from "@mui/material";
 
 
 /**
@@ -80,13 +80,13 @@ function Game() {
             description = 'Go to game start';
         }
         return (
-            <li key={actualMove}>
+            <ListItem key={actualMove} disablePadding>
                 {actualMove ===  currentMove ? (
-                    <span>{description}</span>
+                    <Typography variant="body1">{description}</Typography>
                 ) : (
-                    <button onClick={() => jumpTo(actualMove)}>{description}</button>
+                    <Button variant="outlined" size="small" onClick={() => jumpTo(actualMove)}>{description}</Button>
                 )}
-            </li>
+            </ListItem>
         );
     });
 
@@ -110,7 +110,7 @@ function Game() {
                             <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
                         </div>
                         <div className="game-info">
-                            <ol>{moves}</ol>
+                            <List >{moves}</List>
                         </div>
                     </div>
                 </Grid2>
