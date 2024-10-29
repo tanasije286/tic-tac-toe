@@ -55,8 +55,7 @@ body {
 
 /* Status text styles */
 .status {
-  color: #007bff; /* Blue text to match the board border */
-  font-weight: bold;
+  text-decoration: underline;
 }
 
 /* Game layout styles */

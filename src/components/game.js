@@ -1,6 +1,6 @@
 import {useState} from "react";
 import Board from "./board";
-import {Box, Grid2, Typography} from "@mui/material";
+import {Box, Button, Grid2, Typography} from "@mui/material";
 
 
 /**
@@ -100,11 +100,11 @@ function Game() {
 
     return (
         <>
-            <Grid2 container>
-                <Grid2 size={12}>
-                    {tieMessage && <Typography variant="h4" align="center" color="primary" gutterBottom>{tieMessage}</Typography>}
+            <Grid2 container spacing={1}>
+                <Grid2 container size={12} justifyContent="center">
+                        {tieMessage && <Typography variant="h4" align="center" color="primary" className="status" border={2} borderRadius={2} padding={1}>{tieMessage}</Typography>}
                 </Grid2>
-                <Grid2 size={12}>
+                <Grid2 container size={12} justifyContent="center">
                     <div className="game">
                         <div className="game-board">
                             <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
@@ -114,10 +114,8 @@ function Game() {
                         </div>
                     </div>
                 </Grid2>
-                <Grid2 size={12}>
-                    <div className="game-history-order">
-                        <button onClick={onHistoryOrder}>{historyOrderDescription}</button>
-                    </div>
+                <Grid2 container size={12} justifyContent="center">
+                    <Button variant="contained" onClick={onHistoryOrder}>{historyOrderDescription}</Button>
                 </Grid2>
             </Grid2>
         </>
