@@ -107,14 +107,14 @@ function Game() {
                         {tieMessage && <Typography variant="h4" align="center" color="primary" className="status" border={2} borderRadius={2} padding={1}>{tieMessage}</Typography>}
                 </Grid2>
                 <Grid2 container size={12} justifyContent="center">
-                    <div className="game">
-                        <div className="game-board">
+                    <Box className="game">
+                        <Box className="game-board">
                             <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
-                        </div>
-                        <div className="game-info">
+                        </Box>
+                        <Box className="game-info">
                             <List>{moves}</List>
-                        </div>
-                    </div>
+                        </Box>
+                    </Box>
                 </Grid2>
                 <Grid2 container size={12} justifyContent="center">
                     <Button variant="contained" onClick={onHistoryOrder}>{historyOrderDescription}</Button>

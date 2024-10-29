@@ -1,5 +1,6 @@
 import Square from "./square";
 import calculateWinningSquares from "../utils/calculateWinningSquares";
+import {Box} from "@mui/material";
 
 /**
  * Board component represents the Tic Tac Toe game board.
@@ -49,16 +50,16 @@ function Board({ xIsNext, squares, onPlay }) {
 
     return (
         <>
-            <div className="status">{status}</div>
+            <Box className="status">{status}</Box>
             {listBoardRow.map(row => (
-                <div className="board-row">
+                <Box className="board-row">
                     {listBoardCol.map(col => {
                         const index = row * 3 + col;
                         return(
                             <Square value={squares[index]} onSquareClick={() => handleClick(row,col)} highlighted={(winSquares.includes(index))}/>
                         );
                     })}
-                </div>
+                </Box>
             ))}
         </>
     );

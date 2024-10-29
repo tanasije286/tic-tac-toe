@@ -74,27 +74,7 @@ body {
   margin-left: 30px; /* Increase space between board and game info */
 }
 
-/* History order button styling */
-.game-history-order {
-  margin-top: 10px;
-  text-align: center;
-}
 
-.game-history-order button {
-  padding: 8px 15px;
-  background-color: #007bff; /* Blue background for buttons */
-  color: #fff; /* White text */
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-/* Hover effect for history order button */
-.game-history-order button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
 
 
 
