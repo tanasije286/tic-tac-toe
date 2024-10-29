@@ -1,3 +1,5 @@
+import {Button} from "@mui/material";
+
 /**
  * Square component represents a single cell in the Tic Tac Toe board.
  *
@@ -10,9 +12,9 @@
  */
 function Square({ value , onSquareClick, highlighted = false}) {
     return (
-        <button className={`square ${highlighted ? "highlighted" : ""}`}  onClick={onSquareClick}>
+        <Button variant="outlined"  size="large" className={`square ${highlighted ? "highlighted" : ""}`}  onClick={onSquareClick}>
             {value}
-        </button>
+        </Button>
     );
 }
 
