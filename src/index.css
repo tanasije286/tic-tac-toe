@@ -55,8 +55,6 @@ body {
 
 /* Status text styles */
 .status {
-  font-size: 20px;
-  margin-bottom: 20px;
   color: #007bff; /* Blue text to match the board border */
   font-weight: bold;
 }
@@ -99,20 +97,5 @@ body {
   background-color: #0056b3; /* Darker blue on hover */
 }
 
-/* Tie message styling */
-.status.tie {
-  color: #e53935; /* Red color for tie message */
-  font-size: 18px;
-  font-weight: bold; /* Make text bold */
-  border: 2px solid #ff0000; /* Red outline */
-  padding: 5px 5px; /* Add some padding for spacing */
-  border-radius: 5px; /* Optional: rounded corners for better aesthetics */
-  margin-top: 10px;
-  text-align: center;
-  background-color: #d3d3d3; /* Light gray background */
-  display: inline-block;
-}
 
-.status-container {
-  text-align: center; /* Center-aligns inline-block elements */
-}
+

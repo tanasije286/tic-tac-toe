@@ -1,5 +1,6 @@
 import {useState} from "react";
 import Board from "./board";
+import {Box, Grid2, Typography} from "@mui/material";
 
 
 /**
@@ -99,20 +100,26 @@ function Game() {
 
     return (
         <>
-            <div className="game">
-                <div className="game-board">
-                    <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
-                </div>
-                <div className="game-info">
-                    <ol>{moves}</ol>
-                </div>
-            </div>
-            <div className="game-history-order">
-                <button onClick={onHistoryOrder}>{historyOrderDescription}</button>
-            </div>
-            <div className="status-container">
-                {tieMessage && <div className="status tie">{tieMessage}</div>}
-            </div>
+            <Grid2 container>
+                <Grid2 size={12}>
+                    {tieMessage && <Typography variant="h4" align="center" color="primary" gutterBottom>{tieMessage}</Typography>}
+                </Grid2>
+                <Grid2 size={12}>
+                    <div className="game">
+                        <div className="game-board">
+                            <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
+                        </div>
+                        <div className="game-info">
+                            <ol>{moves}</ol>
+                        </div>
+                    </div>
+                </Grid2>
+                <Grid2 size={12}>
+                    <div className="game-history-order">
+                        <button onClick={onHistoryOrder}>{historyOrderDescription}</button>
+                    </div>
+                </Grid2>
+            </Grid2>
         </>
     );
 }
